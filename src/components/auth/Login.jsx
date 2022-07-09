@@ -106,19 +106,14 @@ export const Login = () => {
               onChange={handleInputChange}
             />
 
-            <FormControl
-              sx={{ width: "fullWidth" }}
-              margin="normal"
-              fullWidth
-              variant="outlined"
-              required
-            >
+            <FormControl margin="normal" fullWidth variant="outlined" required>
               <InputLabel htmlFor="outlined-adornment-password">
                 Contraseña
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={showPassword ? "text" : "password"}
+                label="Contraseña"
                 name="password"
                 value={password}
                 onChange={handleInputChange}
@@ -134,7 +129,6 @@ export const Login = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Contraseña"
               />
             </FormControl>
 
@@ -142,7 +136,7 @@ export const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 3 }}
             >
               Iniciar sesión
             </Button>
@@ -161,7 +155,7 @@ export const Login = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 6, mb: 4 }} />
       </Container>
     </>
   );

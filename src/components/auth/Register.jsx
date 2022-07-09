@@ -150,19 +150,14 @@ export const Register = () => {
               onChange={handleInputChange}
             />
 
-            <FormControl
-              sx={{ width: "fullWidth" }}
-              margin="normal"
-              fullWidth
-              variant="outlined"
-              required
-            >
+            <FormControl margin="normal" fullWidth variant="outlined" required>
               <InputLabel htmlFor="outlined-adornment-password">
                 Contraseña
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={showPassword ? "text" : "password"}
+                label="Contraseña"
                 name="password"
                 value={password}
                 onChange={handleInputChange}
@@ -178,23 +173,17 @@ export const Register = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Contraseña"
               />
             </FormControl>
 
-            <FormControl
-              sx={{ width: "fullWidth" }}
-              margin="normal"
-              fullWidth
-              variant="outlined"
-              required
-            >
+            <FormControl margin="normal" fullWidth variant="outlined" required>
               <InputLabel htmlFor="outlined-adornment-password2">
                 Repetir contraseña
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password2"
                 type={showPassword ? "text" : "password"}
+                label="Repetir contraseña"
                 name="password2"
                 value={password2}
                 onChange={handleInputChange}
@@ -210,7 +199,6 @@ export const Register = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Repetir contraseña"
               />
             </FormControl>
 
@@ -218,7 +206,7 @@ export const Register = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 3 }}
             >
               Registrarse
             </Button>
@@ -232,7 +220,7 @@ export const Register = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 6, mb: 4 }} />
       </Container>
     </>
   );
