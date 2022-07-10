@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Home } from "../components/home/Home";
 import { startAuthCheckingFinish } from "../store/slices/auth/authThunk";
+import { ResetPassword } from "../components/auth/ResetPassword";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,15 @@ export const AppRouter = () => {
             />
 
             <Route
+              path="/reset-password"
+              element={
+                <PublicRouter isAuthenticated={!!uid}>
+                  <ResetPassword />
+                </PublicRouter>
+              }
+            />
+
+            <Route
               path="/"
               element={
                 <PrivateRouter isAuthenticated={!!uid}>
@@ -59,28 +69,6 @@ export const AppRouter = () => {
               }
             />
 
-            {/* <PrivateRouter
-              exact
-              path="/"
-              element={<Home />}
-              isAuthenticated={!!uid}
-            /> */}
-
-            {/* <PublicRouter
-              exact
-              path="/login"
-              element={<Login />}
-              isAuthenticated={!!uid}
-            /> */}
-
-            {/* <PublicRouter
-              exact
-              path="/register"
-              element={<Register />}
-              isAuthenticated={!!uid}
-            /> */}
-
-            {/* <Navigate to="/" /> */}
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
         </div>

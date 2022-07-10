@@ -145,7 +145,11 @@ export const Login = () => {
 
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link
+                  component={LinkRouter}
+                  to="/reset-password"
+                  variant="body2"
+                >
                   ¿Se te olvidó tu contraseña?
                 </Link>
               </Grid>
