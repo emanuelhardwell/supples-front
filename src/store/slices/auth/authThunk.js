@@ -55,3 +55,16 @@ export const startLogout = () => {
     // dispatch(postLogout());
   };
 };
+
+export const startResetPassword = (email) => {
+  return async (dispatch) => {
+    const res = await fetchWithOutToken("auth/reset-password", email, "POST");
+    const body = await res.json();
+
+    if (body.ok) {
+      Swal.fire("Correo enviado", body.message, "success");
+    } else {
+      Swal.fire("Error", body.message, "error");
+    }
+  };
+};

@@ -22,6 +22,8 @@ export const authSlice = createSlice({
     },
     authLogout: (state) => {
       state.checking = false;
+      state.name = undefined;
+      state.uid = undefined;
     },
   },
 });
