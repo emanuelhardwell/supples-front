@@ -94,19 +94,21 @@ export const Login = () => {
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 1 }}
+            sx={{
+              mt: 1,
+              "& .MuiTextField-root": { marginY: 1, width: "100%" },
+              "& .MuiFormControl-root": { marginY: 1, width: "100%" },
+            }}
           >
             <TextField
-              margin="normal"
               required
-              fullWidth
               label="Correo"
               name="email"
               value={email}
               onChange={handleInputChange}
             />
 
-            <FormControl margin="normal" fullWidth variant="outlined" required>
+            <FormControl variant="outlined" required>
               <InputLabel htmlFor="outlined-adornment-password">
                 Contraseña
               </InputLabel>
@@ -136,7 +138,7 @@ export const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 2, mb: 3 }}
+              sx={{ mt: 1, mb: 2 }}
             >
               Iniciar sesión
             </Button>
@@ -155,7 +157,7 @@ export const Login = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 6, mb: 4 }} />
+        <Copyright sx={{ mt: 5, mb: 4 }} />
       </Container>
     </>
   );

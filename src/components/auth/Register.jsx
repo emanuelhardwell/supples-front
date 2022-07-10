@@ -108,12 +108,14 @@ export const Register = () => {
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 1 }}
+            sx={{
+              mt: 1,
+              "& .MuiTextField-root": { marginY: 1, width: "100%" },
+              "& .MuiFormControl-root": { marginY: 1, width: "100%" },
+            }}
           >
             <TextField
-              margin="normal"
               required
-              fullWidth
               label="Nombre"
               name="name"
               value={name}
@@ -121,9 +123,7 @@ export const Register = () => {
             />
 
             <TextField
-              margin="normal"
               required
-              fullWidth
               label="Apellido paterno"
               name="lastname"
               value={lastname}
@@ -131,9 +131,7 @@ export const Register = () => {
             />
 
             <TextField
-              margin="normal"
               required
-              fullWidth
               label="Apellido materno"
               name="lastname2"
               value={lastname2}
@@ -141,16 +139,14 @@ export const Register = () => {
             />
 
             <TextField
-              margin="normal"
               required
-              fullWidth
               label="Correo"
               name="email"
               value={email}
               onChange={handleInputChange}
             />
 
-            <FormControl margin="normal" fullWidth variant="outlined" required>
+            <FormControl variant="outlined" required>
               <InputLabel htmlFor="outlined-adornment-password">
                 Contraseña
               </InputLabel>
@@ -176,7 +172,7 @@ export const Register = () => {
               />
             </FormControl>
 
-            <FormControl margin="normal" fullWidth variant="outlined" required>
+            <FormControl variant="outlined" required>
               <InputLabel htmlFor="outlined-adornment-password2">
                 Repetir contraseña
               </InputLabel>
@@ -192,7 +188,6 @@ export const Register = () => {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      //   onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -206,7 +201,7 @@ export const Register = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 2, mb: 3 }}
+              sx={{ mt: 1, mb: 2 }}
             >
               Registrarse
             </Button>
@@ -220,7 +215,7 @@ export const Register = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 6, mb: 4 }} />
+        <Copyright sx={{ mt: 5, mb: 4 }} />
       </Container>
     </>
   );
