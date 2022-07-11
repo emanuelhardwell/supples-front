@@ -79,7 +79,7 @@ export const Register = () => {
     if (password !== password2) {
       return Swal.fire("Error", "Las contraseñas no coinciden", "error");
     }
-    dispatch(startRegister(formValues));
+    dispatch(startRegister({ name, lastname, lastname2, email, password }));
   };
 
   const handleClickShowPassword = () => {
