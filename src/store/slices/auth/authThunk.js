@@ -57,12 +57,29 @@ export const startLogout = () => {
 };
 
 export const startResetPassword = (email) => {
-  return async (dispatch) => {
+  return async () => {
     const res = await fetchWithOutToken("auth/reset-password", email, "POST");
     const body = await res.json();
 
     if (body.ok) {
       Swal.fire("Correo enviado", body.message, "success");
+    } else {
+      Swal.fire("Error", body.message, "error");
+    }
+  };
+};
+
+export const startUpdatePassword = (passwordsAndToken) => {
+  return async () => {
+    const res = await fetchWithOutToken(
+      "auth/update-password",
+      passwordsAndToken,
+      "POST"
+    );
+    const body = await res.json();
+
+    if (body.ok) {
+      Swal.fire("Correcto", body.message, "success");
     } else {
       Swal.fire("Error", body.message, "error");
     }
