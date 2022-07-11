@@ -19,11 +19,13 @@ export const authSlice = createSlice({
       state.checking = false;
       state.name = action.payload.name;
       state.uid = action.payload.uid;
+      state.rol = action.payload.rol;
     },
     authLogout: (state) => {
       state.checking = false;
       state.name = undefined;
       state.uid = undefined;
+      state.rol = undefined;
     },
   },
 });

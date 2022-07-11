@@ -10,7 +10,7 @@ export const startLogin = (user) => {
     if (body.ok) {
       localStorage.setItem("token", body.token);
       localStorage.setItem("token-init-date", new Date().getTime());
-      dispatch(authLogin({ uid: body.uid, name: body.name }));
+      dispatch(authLogin({ uid: body.uid, name: body.name, rol: body.rol }));
     } else {
       Swal.fire("Error", body.message, "error");
     }
@@ -41,7 +41,7 @@ export const startAuthCheckingFinish = () => {
     if (body.ok) {
       localStorage.setItem("token", body.token);
       localStorage.setItem("token-init-date", new Date().getTime());
-      dispatch(authLogin({ uid: body.uid, name: body.name }));
+      dispatch(authLogin({ uid: body.uid, name: body.name, rol: body.rol }));
     } else {
       // Swal.fire("Error", body.message, "error");
       dispatch(authCheckingFinish());
