@@ -18,14 +18,15 @@ export const startLogin = (user) => {
 };
 
 export const startRegister = (user) => {
-  return async (dispatch) => {
+  return async () => {
     const res = await fetchWithOutToken("auth/create", user, "POST");
     const body = await res.json();
 
     if (body.ok) {
-      localStorage.setItem("token", body.token);
-      localStorage.setItem("token-init-date", new Date().getTime());
-      dispatch(authLogin({ uid: body.uid, name: body.name }));
+      Swal.fire("Success", body.message, "success");
+      // localStorage.setItem("token", body.token);
+      // localStorage.setItem("token-init-date", new Date().getTime());
+      // dispatch(authLogin({ uid: body.uid, name: body.name }));
     } else {
       Swal.fire("Error", body.message, "error");
     }
@@ -79,7 +80,24 @@ export const startUpdatePassword = (passwordsAndToken) => {
     const body = await res.json();
 
     if (body.ok) {
-      Swal.fire("Correcto", body.message, "success");
+      Swal.fire("Success", body.message, "success");
+    } else {
+      Swal.fire("Error", body.message, "error");
+    }
+  };
+};
+
+export const startConfirmEmail = (email, token) => {
+  return async () => {
+    const res = await fetchWithOutToken(
+      `auth/confirm?email=${email}&token=${token}`,
+      {},
+      "GET"
+    );
+    const body = await res.json();
+
+    if (body.ok) {
+      Swal.fire("Success", body.message, "success");
     } else {
       Swal.fire("Error", body.message, "error");
     }
