@@ -8,11 +8,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useState } from "react";
 import { Link as LinkRouter, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { startResetPassword } from "../../store/slices/auth/authThunk";
+import { useForm } from "../../hooks/useForm";
 
 const Copyright = (props) => {
   return (
@@ -36,20 +36,14 @@ const Copyright = (props) => {
   );
 };
 
-const initialState = {
-  email: "",
-};
-
 export const ResetPassword = () => {
   const dispatch = useDispatch();
-  const [formValues, setFormValues] = useState(initialState);
+  const [formValues, handleInputChange, reset] = useForm({
+    email: "",
+  });
   const navigate = useNavigate();
 
   const { email } = formValues;
-
-  const handleInputChange = ({ target }) => {
-    setFormValues({ ...formValues, [target.name]: target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +52,7 @@ export const ResetPassword = () => {
     }
 
     dispatch(startResetPassword(formValues));
-    setFormValues(initialState);
+    reset();
     navigate("/update-password");
   };
 

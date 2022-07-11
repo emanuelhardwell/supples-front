@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { startUpdatePassword } from "../../store/slices/auth/authThunk";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
 
 const Copyright = (props) => {
   return (
@@ -43,23 +44,17 @@ const Copyright = (props) => {
   );
 };
 
-const initialState = {
-  token: "",
-  password: "",
-  password1: "",
-};
-
 export const UpdatePassword = () => {
   const dispatch = useDispatch();
-  const [formValues, setFormValues] = useState(initialState);
+  const [formValues, handleInputChange, reset] = useForm({
+    token: "",
+    password: "",
+    password1: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const { token, password, password1 } = formValues;
-
-  const handleInputChange = ({ target }) => {
-    setFormValues({ ...formValues, [target.name]: target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,7 +71,7 @@ export const UpdatePassword = () => {
     }
 
     dispatch(startUpdatePassword({ password, token }));
-    setFormValues(initialState);
+    reset();
     navigate("/login");
   };
 
@@ -180,23 +175,6 @@ export const UpdatePassword = () => {
             >
               Guardar contraseña
             </Button>
-
-            {/* <Grid container>
-              <Grid item xs>
-                <Link
-                  component={LinkRouter}
-                  to="/reset-password"
-                  variant="body2"
-                >
-                  ¿Se te olvidó tu contraseña?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link component={LinkRouter} to="/register" variant="body2">
-                  {"Crear una cuenta"}
-                </Link>
-              </Grid>
-            </Grid> */}
           </Box>
         </Box>
         <Copyright sx={{ mt: 5, mb: 4 }} />
