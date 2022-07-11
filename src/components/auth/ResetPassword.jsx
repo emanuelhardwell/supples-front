@@ -9,7 +9,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkRouter, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { startResetPassword } from "../../store/slices/auth/authThunk";
@@ -43,6 +43,7 @@ const initialState = {
 export const ResetPassword = () => {
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState(initialState);
+  const navigate = useNavigate();
 
   const { email } = formValues;
 
@@ -58,6 +59,7 @@ export const ResetPassword = () => {
 
     dispatch(startResetPassword(formValues));
     setFormValues(initialState);
+    navigate("/update-password");
   };
 
   return (
