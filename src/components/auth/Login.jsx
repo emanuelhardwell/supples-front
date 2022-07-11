@@ -21,6 +21,7 @@ import { Link as LinkRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { startLogin } from "../../store/slices/auth/authThunk";
+import { useForm } from "../../hooks/useForm";
 
 const Copyright = (props) => {
   return (
@@ -44,27 +45,22 @@ const Copyright = (props) => {
   );
 };
 
-const initialState = {
-  email: "",
-  password: "",
-};
-
 export const Login = () => {
   const dispatch = useDispatch();
-  const [formValues, setFormValues] = useState(initialState);
+  const [formValues, handleInputChange] = useForm({
+    email: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
 
   const { email, password } = formValues;
 
-  const handleInputChange = ({ target }) => {
-    setFormValues({ ...formValues, [target.name]: target.value });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.trim() === "" || password.trim() === "") {
-      return Swal.fire("Error", "Ingresa el correo y la contraseña", "error");
+      return Swal.fire("Error", "Ingresa el correo y la contraseña", "info");
     }
+
     dispatch(startLogin(formValues));
   };
 

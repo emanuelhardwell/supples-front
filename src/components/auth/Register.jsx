@@ -21,6 +21,7 @@ import { Link as LinkRouter } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { startRegister } from "../../store/slices/auth/authThunk";
+import { useForm } from "../../hooks/useForm";
 
 const Copyright = (props) => {
   return (
@@ -44,25 +45,19 @@ const Copyright = (props) => {
   );
 };
 
-const initialState = {
-  name: "",
-  lastname: "",
-  lastname2: "",
-  email: "",
-  password: "",
-  password2: "",
-};
-
 export const Register = () => {
   const dispatch = useDispatch();
-  const [formValues, setFormValues] = useState(initialState);
+  const [formValues, handleInputChange, reset] = useForm({
+    name: "",
+    lastname: "",
+    lastname2: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
 
   const { name, lastname, lastname2, email, password, password2 } = formValues;
-
-  const handleInputChange = ({ target }) => {
-    setFormValues({ ...formValues, [target.name]: target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,6 +75,7 @@ export const Register = () => {
       return Swal.fire("Error", "Las contraseñas no coinciden", "error");
     }
     dispatch(startRegister({ name, lastname, lastname2, email, password }));
+    reset();
   };
 
   const handleClickShowPassword = () => {
