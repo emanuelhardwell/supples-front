@@ -17,10 +17,11 @@ import { startAuthCheckingFinish } from "../store/slices/auth/authThunk";
 import { ResetPassword } from "../components/auth/ResetPassword";
 import { UpdatePassword } from "../components/auth/UpdatePassword";
 import { ConfirmEmail } from "../components/auth/ConfirmEmail";
+import { CategoryScreen } from "../components/admin/category/CategoryScreen";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
-  const { uid, checking } = useSelector((state) => state.auth);
+  const { uid, checking, rol } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(startAuthCheckingFinish());
@@ -88,6 +89,17 @@ export const AppRouter = () => {
                 </PrivateRouter>
               }
             />
+
+            {rol === "admin" && (
+              <Route
+                path="/admin/category"
+                element={
+                  <PrivateRouter isAuthenticated={!!uid}>
+                    <CategoryScreen />
+                  </PrivateRouter>
+                }
+              />
+            )}
 
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
