@@ -32,7 +32,7 @@ export const fetchWithToken = (endpoint, data, method = "GET") => {
       method,
       headers: {
         "Content-Type": "application/json",
-        "x-token": token,
+        token: token,
       },
       body: JSON.stringify(data),
     });
@@ -55,7 +55,7 @@ export const fetchWithTokenAndFile = (endpoint, data, method = "GET") => {
       method,
       headers: {
         // "Content-Type": "multipart/form-data",
-        "x-token": token,
+        token: token,
       },
       body: data,
     });
