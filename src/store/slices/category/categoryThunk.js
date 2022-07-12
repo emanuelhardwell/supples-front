@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { fetchWithToken } from "../../../helpers/fetch";
 import {
@@ -27,6 +28,10 @@ export const startCategoryAdd = (category) => {
 
     if (body.ok) {
       dispatch(categoryAdd(body.category));
+      toast(body.message, {
+        type: "success",
+        autoClose: 4000,
+      });
     } else {
       Swal.fire("Error", body.message, "error");
     }
@@ -40,6 +45,10 @@ export const startCategoryDelete = (id) => {
 
     if (body.ok) {
       dispatch(categoryDelete(id));
+      toast(body.message, {
+        type: "success",
+        autoClose: 4000,
+      });
     } else {
       Swal.fire("Error", body.message, "error");
     }
@@ -53,6 +62,10 @@ export const startCategoryUpdate = (category, id) => {
 
     if (body.ok) {
       dispatch(categoryUpdate(body.category));
+      toast(body.message, {
+        type: "success",
+        autoClose: 4000,
+      });
     } else {
       Swal.fire("Error", body.message, "error");
     }

@@ -20,8 +20,6 @@ import {
   startCategoryDelete,
   startCategoryGet,
 } from "../../../store/slices/category/categoryThunk";
-// import Swal from "sweetalert2";
-// import { fetchWithOutToken } from "../../../helpers/fetch";
 import { Navbar } from "../../ui/Navbar";
 import { CategoryForm } from "./CategoryForm";
 
@@ -144,12 +142,12 @@ export const CategoryScreen = () => {
               textAlign="center"
               gutterBottom
             >
-              Categorias para los productos
+              Categorías para los productos
             </Typography>
             <CategoryForm />
 
             <MUIDataTable
-              title={"Tabla de categorias"}
+              title={"Tabla de categorías"}
               columns={colums}
               data={categories}
               options={options}
