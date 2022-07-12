@@ -18,6 +18,7 @@ import { ResetPassword } from "../components/auth/ResetPassword";
 import { UpdatePassword } from "../components/auth/UpdatePassword";
 import { ConfirmEmail } from "../components/auth/ConfirmEmail";
 import { CategoryScreen } from "../components/admin/category/CategoryScreen";
+import { ProductScreen } from "../components/admin/product/ProductScreen";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -91,14 +92,25 @@ export const AppRouter = () => {
             />
 
             {rol === "admin" && (
-              <Route
-                path="/admin/category"
-                element={
-                  <PrivateRouter isAuthenticated={!!uid}>
-                    <CategoryScreen />
-                  </PrivateRouter>
-                }
-              />
+              <>
+                <Route
+                  path="/admin/category"
+                  element={
+                    <PrivateRouter isAuthenticated={!!uid}>
+                      <CategoryScreen />
+                    </PrivateRouter>
+                  }
+                />
+
+                <Route
+                  path="/admin/product"
+                  element={
+                    <PrivateRouter isAuthenticated={!!uid}>
+                      <ProductScreen />
+                    </PrivateRouter>
+                  }
+                />
+              </>
             )}
 
             <Route path="/*" element={<Navigate to="/" />} />

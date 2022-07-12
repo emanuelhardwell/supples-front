@@ -165,8 +165,19 @@ export const Navbar = () => {
                 <MenuItem component={Link} to="/" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center"> Home</Typography>
                 </MenuItem>
-                <MenuItem component={Link} to="#" onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center"> Videos</Typography>
+                <MenuItem
+                  component={Link}
+                  to="/admin/category"
+                  onClick={handleCloseNavMenu}
+                >
+                  <Typography textAlign="center"> Categorías</Typography>
+                </MenuItem>
+                <MenuItem
+                  component={Link}
+                  to="/admin/product"
+                  onClick={handleCloseNavMenu}
+                >
+                  <Typography textAlign="center"> Productos</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -214,11 +225,19 @@ export const Navbar = () => {
               </Button>
               <Button
                 component={Link}
-                to="#"
+                to="/admin/category"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                Video
+                Categorías
+              </Button>
+              <Button
+                component={Link}
+                to="/admin/product"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Productos
               </Button>
             </Box>
 
