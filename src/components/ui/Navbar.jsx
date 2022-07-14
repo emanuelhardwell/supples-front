@@ -25,7 +25,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 // const settings = ["Perfil", "Cuenta", "Dashboard", "Salir"];
 
 export const Navbar = () => {
-  const { name } = useSelector((state) => state.auth);
+  const { name, rol } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -165,20 +165,25 @@ export const Navbar = () => {
                 <MenuItem component={Link} to="/" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center"> Home</Typography>
                 </MenuItem>
-                <MenuItem
-                  component={Link}
-                  to="/admin/category"
-                  onClick={handleCloseNavMenu}
-                >
-                  <Typography textAlign="center"> Categorías</Typography>
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  to="/admin/product"
-                  onClick={handleCloseNavMenu}
-                >
-                  <Typography textAlign="center"> Productos</Typography>
-                </MenuItem>
+
+                {rol === "admin" && (
+                  <div>
+                    <MenuItem
+                      component={Link}
+                      to="/admin/category"
+                      onClick={handleCloseNavMenu}
+                    >
+                      <Typography textAlign="center"> Categorías</Typography>
+                    </MenuItem>
+                    <MenuItem
+                      component={Link}
+                      to="/admin/product"
+                      onClick={handleCloseNavMenu}
+                    >
+                      <Typography textAlign="center"> Productos</Typography>
+                    </MenuItem>
+                  </div>
+                )}
               </Menu>
             </Box>
 
@@ -223,22 +228,27 @@ export const Navbar = () => {
               >
                 Home
               </Button>
-              <Button
-                component={Link}
-                to="/admin/category"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Categorías
-              </Button>
-              <Button
-                component={Link}
-                to="/admin/product"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Productos
-              </Button>
+
+              {rol === "admin" && (
+                <>
+                  <Button
+                    component={Link}
+                    to="/admin/category"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Categorías
+                  </Button>
+                  <Button
+                    component={Link}
+                    to="/admin/product"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Productos
+                  </Button>
+                </>
+              )}
             </Box>
 
             {/* Notificaciones y carrito */}
