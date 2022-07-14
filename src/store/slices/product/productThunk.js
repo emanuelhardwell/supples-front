@@ -5,6 +5,7 @@ import {
   productAdd,
   productDelete,
   productGet,
+  productGetByPopulation,
   productGetCategories,
   productUpdate,
 } from "./productSlice";
@@ -16,6 +17,29 @@ export const startProductGet = () => {
 
     if (body.ok) {
       dispatch(productGet(body.products));
+    } else {
+      Swal.fire("Error", body.message, "error");
+    }
+  };
+};
+
+export const startProductGetByPopulation = (page = 1) => {
+  return async (dispatch) => {
+    const res = await fetchWithToken(
+      `product/products?page=${page}`,
+      {},
+      "GET"
+    );
+    const body = await res.json();
+
+    if (body.ok) {
+      dispatch(
+        productGetByPopulation({
+          products: body.products,
+          currentPage: body.currentPage,
+          numberOfPages: body.numberOfPages,
+        })
+      );
     } else {
       Swal.fire("Error", body.message, "error");
     }

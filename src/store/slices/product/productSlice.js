@@ -5,12 +5,19 @@ export const productSlice = createSlice({
   initialState: {
     products: [],
     productActive: null,
+    currentPage: "",
+    numberOfPages: "",
     productCategories: [],
     modalOpen: false,
   },
   reducers: {
     productGet: (state, action) => {
       state.products = action.payload;
+    },
+    productGetByPopulation: (state, action) => {
+      state.products = action.payload.products;
+      state.currentPage = action.payload.currentPage;
+      state.numberOfPages = action.payload.numberOfPages;
     },
     productAdd: (state, action) => {
       state.products.push(action.payload);
@@ -54,5 +61,6 @@ export const {
   productClearActive,
   productSetActive,
   productGetCategories,
+  productGetByPopulation,
 } = productSlice.actions;
 export default productSlice.reducer;
