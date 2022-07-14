@@ -12,19 +12,20 @@ import { ProductUpdate } from "./ProductUpdate";
 
 import dayjs from "dayjs";
 import "dayjs/locale/es"; // carga bajo demanda
+import { truncateText } from "../../../helpers/truncateText";
 dayjs.locale("es"); // usar la configuración regional española globalmente
 
 export const ProductCard = ({ product }) => {
   return (
     <>
       <Grid item xs={12} sm={6} md={4}>
-        <Card sx={{ maxWidth: 345 }} elevation={6}>
+        <Card sx={{ maxWidth: 345, height: "100%" }} elevation={6}>
           <CardMedia
-            sx={{ maxWidth: "100%", maxHeight: "100%" }}
+            sx={{ objectFit: "contain", p: "10px" }}
             component="img"
-            height="200"
+            height="250"
             image={product?.imageUrl}
-            alt="Paella dish"
+            alt={product?.name}
           />
           <CardContent>
             <Typography
@@ -33,10 +34,10 @@ export const ProductCard = ({ product }) => {
               gutterBottom
               fontWeight="bold"
             >
-              {product?.name}
+              {product?.name && truncateText(product?.name, 56)}
             </Typography>
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              {product?.description}
+              {product?.description && truncateText(product?.description, 70)}
             </Typography>
             <Typography variant="body1" color="text.secondary">
               <strong>$ {product?.price} </strong>

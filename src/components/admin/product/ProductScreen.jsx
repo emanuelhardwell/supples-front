@@ -27,7 +27,7 @@ export const ProductScreen = () => {
           <ProductForm />
         </Grid>
 
-        <Grid container sx={{ py: 2 }} spacing={2}>
+        <Grid container sx={{ py: 2 }} spacing={1}>
           {products?.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

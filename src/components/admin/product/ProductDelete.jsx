@@ -2,24 +2,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { useDispatch } from "react-redux";
-import Swal from "sweetalert2";
+import { deleteSweetAlert } from "../../../helpers/deleteSweetAlert";
 import { startProductDelete } from "../../../store/slices/product/productThunk";
 
 export const ProductDelete = ({ id }) => {
   const dispatch = useDispatch();
 
   const deleteProduct = async (id) => {
-    const result = await Swal.fire({
-      title: "¿Está seguro de eliminarlo?",
-      text: "¡No podrás revertir esto!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "¡Sí, bórralo!",
-    });
+    const result = await deleteSweetAlert();
 
-    if (!result.isConfirmed) {
+    if (!result) {
       return null;
     }
 
