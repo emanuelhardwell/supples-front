@@ -23,10 +23,10 @@ export const startProductGet = () => {
   };
 };
 
-export const startProductGetByPopulation = (page = 1) => {
+export const startProductGetByPopulation = (page = 1, searchQuery = "") => {
   return async (dispatch) => {
     const res = await fetchWithToken(
-      `product/products?page=${page}`,
+      `product/products?page=${page}&name=${searchQuery}`,
       {},
       "GET"
     );
