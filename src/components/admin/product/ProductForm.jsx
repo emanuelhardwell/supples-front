@@ -127,120 +127,132 @@ export const ProductForm = () => {
   }, [productActive, setFormValues]);
 
   return (
-    <div>
-      <Button sx={{ mb: 2 }} variant="contained" onClick={handleOpen}>
-        Agregar producto
-      </Button>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={modalOpen}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={modalOpen}>
-          <Box sx={style}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h6" component="h2">
-                Agregar producto
-              </Typography>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: { xs: "center", sm: "center" },
+      }}
+    >
+      <div>
+        <Button sx={{ mb: 2 }} variant="contained" onClick={handleOpen}>
+          Agregar producto
+        </Button>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={modalOpen}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={modalOpen}>
+            <Box sx={style}>
               <Box
-                component="form"
-                onSubmit={handleSubmit}
-                noValidate
                 sx={{
-                  mt: 1,
-                  "& .MuiTextField-root": { marginY: 1, width: "100%" },
-                  "& .MuiFormControl-root": { marginY: 1, width: "100%" },
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
                 }}
               >
-                <TextField
-                  autoFocus
-                  required
-                  label="Nombre del producto"
-                  name="name"
-                  value={name}
-                  onChange={handleInputChange}
-                />
-
-                <TextField
-                  required
-                  label="Descripción"
-                  name="description"
-                  value={description}
-                  onChange={handleInputChange}
-                />
-
-                <TextField
-                  required
-                  type="number"
-                  label="Precio"
-                  name="price"
-                  value={price}
-                  onChange={handleInputChange}
-                />
-
-                <FormControl>
-                  <InputLabel id="select-label">Categoría</InputLabel>
-                  <Select
-                    labelId="select-label"
-                    id="select"
-                    label="Categoría"
-                    name="categoryId"
-                    value={categoryId}
-                    onChange={handleInputChange}
-                  >
-                    {productCategories.map((category) => (
-                      <MenuItem key={category.id} value={category.id}>
-                        {category.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <Stack direction="row" alignItems="center" spacing={2}>
-                  <Button variant="contained" color="success" component="label">
-                    Elegir imagen
-                    <input
-                      hidden
-                      accept="image/*"
-                      type="file"
-                      onChange={handleFileChange}
-                    />
-                  </Button>
-                  <IconButton
-                    color="success"
-                    aria-label="upload picture"
-                    component="label"
-                  >
-                    <input hidden accept="image/*" type="file" />
-                    <PhotoCamera />
-                  </IconButton>
-                </Stack>
-
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 1, mb: 2 }}
+                <Typography variant="h6" component="h2">
+                  Agregar producto
+                </Typography>
+                <Box
+                  component="form"
+                  onSubmit={handleSubmit}
+                  noValidate
+                  sx={{
+                    mt: 1,
+                    "& .MuiTextField-root": { marginY: 1, width: "100%" },
+                    "& .MuiFormControl-root": { marginY: 1, width: "100%" },
+                  }}
                 >
-                  Guardar
-                </Button>
+                  <TextField
+                    autoFocus
+                    required
+                    label="Nombre del producto"
+                    name="name"
+                    value={name}
+                    onChange={handleInputChange}
+                  />
+
+                  <TextField
+                    required
+                    label="Descripción"
+                    name="description"
+                    value={description}
+                    onChange={handleInputChange}
+                  />
+
+                  <TextField
+                    required
+                    type="number"
+                    label="Precio"
+                    name="price"
+                    value={price}
+                    onChange={handleInputChange}
+                  />
+
+                  <FormControl>
+                    <InputLabel id="select-label">Categoría</InputLabel>
+                    <Select
+                      labelId="select-label"
+                      id="select"
+                      label="Categoría"
+                      name="categoryId"
+                      value={categoryId}
+                      onChange={handleInputChange}
+                    >
+                      {productCategories.map((category) => (
+                        <MenuItem key={category.id} value={category.id}>
+                          {category.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      component="label"
+                    >
+                      Elegir imagen
+                      <input
+                        hidden
+                        accept="image/*"
+                        type="file"
+                        onChange={handleFileChange}
+                      />
+                    </Button>
+                    <IconButton
+                      color="success"
+                      aria-label="upload picture"
+                      component="label"
+                    >
+                      <input hidden accept="image/*" type="file" />
+                      <PhotoCamera />
+                    </IconButton>
+                  </Stack>
+
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 1, mb: 2 }}
+                  >
+                    Guardar
+                  </Button>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
+          </Fade>
+        </Modal>
+      </div>
+    </Box>
   );
 };

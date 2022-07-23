@@ -1,12 +1,9 @@
 import {
-  Box,
   Container,
   CssBaseline,
   Grid,
   Pagination,
   PaginationItem,
-  TextField,
-  Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +15,8 @@ import { Navbar } from "../../ui/Navbar";
 import { ProductCard } from "./ProductCard";
 import { ProductForm } from "./ProductForm";
 import { useLocation, Link, useNavigate } from "react-router-dom";
+import { ProductSearch } from "./ProductSearch";
+import { ProductNotFound } from "./ProductNotFound";
 
 export const ProductScreen = () => {
   const dispatch = useDispatch();
@@ -65,44 +64,15 @@ export const ProductScreen = () => {
       <Container maxWidth="xl">
         <Grid container sx={{ pt: 3 }}>
           <Grid item xs={12} sm={6}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: { xs: "center", sm: "center" },
-              }}
-            >
-              <ProductForm />
-            </Box>
+            <ProductForm />
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: { xs: "center", sm: "center" },
-              }}
-            >
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{
-                  mt: -1,
-                  "& .MuiTextField-root": { marginY: 1, width: "100%" },
-                  "& .MuiFormControl-root": { marginY: 1, width: "100%" },
-                }}
-              >
-                <TextField
-                  size="small"
-                  label="Buscar"
-                  name="search"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </Box>
-            </Box>
+            <ProductSearch
+              search={search}
+              setSearch={setSearch}
+              handleSubmit={handleSubmit}
+            />
           </Grid>
         </Grid>
 
@@ -141,9 +111,7 @@ export const ProductScreen = () => {
 
           {numberOfPages < 1 && (
             <Grid item xs={12}>
-              <Typography variant="h6" textAlign="center">
-                No se encontro ningun producto
-              </Typography>
+              <ProductNotFound />
             </Grid>
           )}
         </Grid>
