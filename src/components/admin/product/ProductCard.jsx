@@ -16,6 +16,11 @@ import { truncateText } from "../../../helpers/truncateText";
 dayjs.locale("es"); // usar la configuración regional española globalmente
 
 export const ProductCard = ({ product }) => {
+  let numberFormat = new Intl.NumberFormat("es-MX", {
+    style: "currency",
+    currency: "MXN",
+  });
+
   return (
     <>
       <Grid item xs={12} sm={6} md={4}>
@@ -40,7 +45,7 @@ export const ProductCard = ({ product }) => {
               {product?.description && truncateText(product?.description, 70)}
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              <strong>$ {product?.price} </strong>
+              <strong> {numberFormat.format(product?.price)} </strong>
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
