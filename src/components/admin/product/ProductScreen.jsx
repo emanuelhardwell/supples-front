@@ -1,10 +1,4 @@
-import {
-  Container,
-  CssBaseline,
-  Grid,
-  Pagination,
-  PaginationItem,
-} from "@mui/material";
+import { Container, CssBaseline, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,9 +8,10 @@ import {
 import { Navbar } from "../../ui/Navbar";
 import { ProductCard } from "./ProductCard";
 import { ProductForm } from "./ProductForm";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ProductSearch } from "./ProductSearch";
 import { ProductNotFound } from "./ProductNotFound";
+import { ProductPagination } from "./ProductPagination";
 
 export const ProductScreen = () => {
   const dispatch = useDispatch();
@@ -70,26 +65,10 @@ export const ProductScreen = () => {
         <Grid container sx={{ py: 2 }}>
           <Grid item xs={12}>
             {numberOfPages && currentPage && (
-              <Pagination
-                sx={{ display: "flex", justifyContent: "center" }}
-                count={numberOfPages}
-                page={currentPage}
-                color="primary"
-                renderItem={(item) => (
-                  <PaginationItem
-                    component={Link}
-                    to={`${
-                      item.page === 1 && searchQuery === ""
-                        ? ""
-                        : item.page !== 1 && searchQuery === ""
-                        ? `?page=${item.page}`
-                        : item.page === 1 && searchQuery !== ""
-                        ? `?name=${searchQuery}`
-                        : `?page=${item.page}&name=${searchQuery}`
-                    }`}
-                    {...item}
-                  />
-                )}
+              <ProductPagination
+                numberOfPages={numberOfPages}
+                currentPage={currentPage}
+                searchQuery={searchQuery}
               />
             )}
           </Grid>
