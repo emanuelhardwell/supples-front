@@ -47,6 +47,10 @@ export const productSlice = createSlice({
     productGetCategories: (state, action) => {
       state.productCategories = action.payload;
     },
+    productLogout: (state) => {
+      state.products = [];
+      state.productCategories = [];
+    },
   },
 });
 
@@ -62,5 +66,6 @@ export const {
   productSetActive,
   productGetCategories,
   productGetByPopulation,
+  productLogout,
 } = productSlice.actions;
 export default productSlice.reducer;

@@ -36,6 +36,9 @@ export const categorySlice = createSlice({
     categoryClearActive: (state) => {
       state.categoryActive = null;
     },
+    categoryLogout: (state) => {
+      state.categories = [];
+    },
   },
 });
 
@@ -49,5 +52,6 @@ export const {
   categoryModalOpen,
   categoryClearActive,
   categorySetActive,
+  categoryLogout,
 } = categorySlice.actions;
 export default categorySlice.reducer;

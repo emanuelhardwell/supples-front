@@ -1,5 +1,7 @@
 import Swal from "sweetalert2";
 import { fetchWithOutToken, fetchWithToken } from "../../../helpers/fetch";
+import { categoryLogout } from "../category/categorySlice";
+import { productLogout } from "../product/productSlice";
 import { authCheckingFinish, authLogin, authLogout } from "./authSlice";
 
 export const startLogin = (user) => {
@@ -53,7 +55,8 @@ export const startLogout = () => {
   return (dispatch) => {
     localStorage.clear();
     dispatch(authLogout());
-    // dispatch(postLogout());
+    dispatch(productLogout());
+    dispatch(categoryLogout());
   };
 };
 
