@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const productSlice = createSlice({
   name: "product",
   initialState: {
+    product: {},
     products: [],
     productActive: null,
     currentPage: "",
@@ -13,6 +14,9 @@ export const productSlice = createSlice({
   reducers: {
     productGet: (state, action) => {
       state.products = action.payload;
+    },
+    productGetById: (state, action) => {
+      state.product = action.payload;
     },
     productGetByPopulation: (state, action) => {
       state.products = action.payload.products;
@@ -56,6 +60,7 @@ export const productSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  productGetById,
   productGet,
   productAdd,
   productDelete,

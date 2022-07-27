@@ -5,6 +5,7 @@ import {
   productAdd,
   productDelete,
   productGet,
+  productGetById,
   productGetByPopulation,
   productGetCategories,
   productUpdate,
@@ -17,6 +18,19 @@ export const startProductGet = () => {
 
     if (body.ok) {
       dispatch(productGet(body.products));
+    } else {
+      Swal.fire("Error", body.message, "error");
+    }
+  };
+};
+
+export const startProductGetById = (id) => {
+  return async (dispatch) => {
+    const res = await fetchWithToken(`product/${id}`, {}, "GET");
+    const body = await res.json();
+
+    if (body.ok) {
+      dispatch(productGetById(body.product));
     } else {
       Swal.fire("Error", body.message, "error");
     }
