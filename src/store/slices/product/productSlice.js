@@ -54,6 +54,7 @@ export const productSlice = createSlice({
     productLogout: (state) => {
       state.products = [];
       state.productCategories = [];
+      state.product = {};
     },
   },
 });

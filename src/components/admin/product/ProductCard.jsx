@@ -14,9 +14,11 @@ import dayjs from "dayjs";
 import "dayjs/locale/es"; // carga bajo demanda
 import { truncateText } from "../../../helpers/truncateText";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 dayjs.locale("es"); // usar la configuración regional española globalmente
 
 export const ProductCard = ({ product }) => {
+  const { rol } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   let numberFormat = new Intl.NumberFormat("es-MX", {
@@ -57,11 +59,14 @@ export const ProductCard = ({ product }) => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
+            {rol === "user" && (
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon color="error" />
+              </IconButton>
+            )}
+
             <IconButton aria-label="share">
-              <ShareIcon />
+              <ShareIcon color="primary" />
             </IconButton>
             <div style={{ marginLeft: "auto" }}>
               <ProductDelete id={product?.id} />

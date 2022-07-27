@@ -26,6 +26,7 @@ export const ProductOne = () => {
   const params = useParams();
 
   const { product } = useSelector((state) => state.product);
+  const { rol } = useSelector((state) => state.auth);
 
   let numberFormat = new Intl.NumberFormat("es-MX", {
     style: "currency",
@@ -50,7 +51,7 @@ export const ProductOne = () => {
       <Container maxWidth="xl">
         <Paper
           style={{ marginTop: "20px", marginBottom: "20px" }}
-          elevation="6"
+          elevation={6}
         >
           <Grid container>
             <Grid item xs={12} sm={7} style={{ marginTop: "25px" }}>
@@ -90,9 +91,12 @@ export const ProductOne = () => {
               </CardContent>
 
               <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon color="error" />
-                </IconButton>
+                {rol === "user" && (
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon color="error" />
+                  </IconButton>
+                )}
+
                 <CopyToClipboard text={window?.location?.href}>
                   <IconButton aria-label="share" onClick={handleShareLink}>
                     <ShareIcon color="primary" />
