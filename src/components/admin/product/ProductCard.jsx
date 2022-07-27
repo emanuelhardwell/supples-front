@@ -13,24 +13,32 @@ import { ProductUpdate } from "./ProductUpdate";
 import dayjs from "dayjs";
 import "dayjs/locale/es"; // carga bajo demanda
 import { truncateText } from "../../../helpers/truncateText";
+import { useNavigate } from "react-router-dom";
 dayjs.locale("es"); // usar la configuración regional española globalmente
 
 export const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
   let numberFormat = new Intl.NumberFormat("es-MX", {
     style: "currency",
     currency: "MXN",
   });
+
+  const handleClickProduct = (id) => {
+    navigate(`/product/${id}`);
+  };
 
   return (
     <>
       <Grid item xs={12} sm={6} md={4}>
         <Card sx={{ maxWidth: 345, height: "100%" }} elevation={6}>
           <CardMedia
-            sx={{ objectFit: "contain", p: "10px" }}
+            sx={{ objectFit: "contain", p: "10px", cursor: "pointer" }}
             component="img"
             height="250"
             image={product?.imageUrl}
             alt={product?.name}
+            onClick={() => handleClickProduct(product.id)}
           />
           <CardContent>
             <Typography
