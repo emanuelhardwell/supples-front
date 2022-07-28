@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -20,12 +20,14 @@ import { startLogout } from "../../store/slices/auth/authThunk";
 import { Badge } from "@mui/material";
 import { Notifications, MoreVert } from "@mui/icons-material/";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { startCartGet } from "../../store/slices/cart/cartThunk";
 
 // const pages = ["Home", "Pricing", "Blog"];
 // const settings = ["Perfil", "Cuenta", "Dashboard", "Salir"];
 
 export const Navbar = () => {
   const { name, rol } = useSelector((state) => state.auth);
+  const { cartNumber } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -51,6 +53,10 @@ export const Navbar = () => {
   const handleLogout = () => {
     dispatch(startLogout());
   };
+
+  useEffect(() => {
+    dispatch(startCartGet());
+  }, [dispatch]);
 
   // Menu de carrito y notificaciones
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -81,8 +87,8 @@ export const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton size="large" aria-label="show new mails" color="inherit">
+          <Badge badgeContent={cartNumber} color="error">
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
@@ -256,10 +262,10 @@ export const Navbar = () => {
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
                 size="large"
-                aria-label="show 4 new products"
+                aria-label="show new products"
                 color="inherit"
               >
-                <Badge badgeContent={4} color="error">
+                <Badge badgeContent={cartNumber} color="error">
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>

@@ -20,6 +20,7 @@ import { startProductGetById } from "../../../store/slices/product/productThunk"
 import { Navbar } from "../../ui/Navbar";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
+import { CartAddProduct } from "../../cart/CartAddProduct";
 
 export const ProductOne = () => {
   const dispatch = useDispatch();
@@ -104,8 +105,7 @@ export const ProductOne = () => {
                 </CopyToClipboard>
 
                 <div style={{ marginLeft: "auto" }}>
-                  {/* <ProductDelete id={product?.id} />
-                  <ProductUpdate product={product} /> */}
+                  <CartAddProduct id={product?.id} />
                 </div>
               </CardActions>
             </Grid>
