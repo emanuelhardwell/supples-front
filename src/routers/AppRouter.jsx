@@ -20,6 +20,7 @@ import { ConfirmEmail } from "../components/auth/ConfirmEmail";
 import { CategoryScreen } from "../components/admin/category/CategoryScreen";
 import { ProductScreen } from "../components/admin/product/ProductScreen";
 import { ProductOne } from "../components/admin/product/ProductOne";
+import { CartScreen } from "../components/cart/CartScreen";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -97,6 +98,15 @@ export const AppRouter = () => {
               element={
                 <PrivateRouter isAuthenticated={!!uid}>
                   <ProductOne />
+                </PrivateRouter>
+              }
+            />
+
+            <Route
+              path="/cart"
+              element={
+                <PrivateRouter isAuthenticated={!!uid}>
+                  <CartScreen />
                 </PrivateRouter>
               }
             />

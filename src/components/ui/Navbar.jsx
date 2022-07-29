@@ -86,7 +86,7 @@ export const Navbar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      <MenuItem component={Link} to="/cart">
         <IconButton size="large" aria-label="show new mails" color="inherit">
           <Badge badgeContent={cartNumber} color="error">
             <ShoppingCartIcon />
@@ -261,6 +261,8 @@ export const Navbar = () => {
             {/* <Box sx={{ flexGrow: 1 }} /> */}
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
+                component={Link}
+                to="/cart"
                 size="large"
                 aria-label="show new products"
                 color="inherit"
