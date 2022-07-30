@@ -21,6 +21,7 @@ import { Navbar } from "../../ui/Navbar";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import { CartAddProduct } from "../../cart/CartAddProduct";
+import { numberFormat } from "../../../helpers/numberFormat";
 
 export const ProductOne = () => {
   const dispatch = useDispatch();
@@ -28,11 +29,6 @@ export const ProductOne = () => {
 
   const { product } = useSelector((state) => state.product);
   const { rol } = useSelector((state) => state.auth);
-
-  let numberFormat = new Intl.NumberFormat("es-MX", {
-    style: "currency",
-    currency: "MXN",
-  });
 
   const handleShareLink = () => {
     toast("Link copiado", {
@@ -87,7 +83,7 @@ export const ProductOne = () => {
                   variant="body1"
                   color="text.secondary"
                 >
-                  <strong> {numberFormat.format(product?.price)} </strong>
+                  <strong> {numberFormat(product?.price)} </strong>
                 </Typography>
               </CardContent>
 

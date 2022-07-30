@@ -15,16 +15,12 @@ import "dayjs/locale/es"; // carga bajo demanda
 import { truncateText } from "../../../helpers/truncateText";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { numberFormat } from "../../../helpers/numberFormat";
 dayjs.locale("es"); // usar la configuración regional española globalmente
 
 export const ProductCard = ({ product }) => {
   const { rol } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-
-  let numberFormat = new Intl.NumberFormat("es-MX", {
-    style: "currency",
-    currency: "MXN",
-  });
 
   const handleClickProduct = (id) => {
     navigate(`/product/${id}`);
@@ -55,7 +51,7 @@ export const ProductCard = ({ product }) => {
               {product?.description && truncateText(product?.description, 70)}
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              <strong> {numberFormat.format(product?.price)} </strong>
+              <strong> {numberFormat(product?.price)} </strong>
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
