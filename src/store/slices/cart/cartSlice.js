@@ -4,17 +4,17 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartItems: [],
-    cartNumber: 0,
+    cartQuantity: 0,
   },
   reducers: {
     cartGet: (state, action) => {
       state.cartItems = action.payload;
     },
-    cartNumber: (state, action) => {
-      state.cartNumber = action.payload;
+    cartQuantityGet: (state, action) => {
+      state.cartQuantity = action.payload;
     },
-    cartNumberAdd: (state, action) => {
-      state.cartNumber = state.cartNumber + action.payload;
+    cartQuantityAdd: (state, action) => {
+      state.cartQuantity = state.cartQuantity + action.payload;
     },
     cartAdd: (state, action) => {
       state.cartItems.push(action.payload);
@@ -23,6 +23,6 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { cartGet, cartNumber, cartAdd, cartNumberAdd } =
+export const { cartGet, cartQuantityGet, cartAdd, cartQuantityAdd } =
   cartSlice.actions;
 export default cartSlice.reducer;

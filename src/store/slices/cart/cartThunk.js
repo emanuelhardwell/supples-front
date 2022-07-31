@@ -1,7 +1,25 @@
 import Swal from "sweetalert2";
 import { fetchWithToken } from "../../../helpers/fetch";
-import { cartAdd, cartGet, cartNumber, cartNumberAdd } from "./cartSlice";
+import {
+  cartAdd,
+  cartGet,
+  cartQuantityAdd,
+  cartQuantityGet,
+} from "./cartSlice";
 import { toast } from "react-toastify";
+
+export const startCartQuantityGet = () => {
+  return async (dispatch) => {
+    const res = await fetchWithToken("cart-item/quantity", {}, "GET");
+    const body = await res.json();
+
+    if (body.ok) {
+      dispatch(cartQuantityGet(body.cartItems));
+    } else {
+      Swal.fire("Error", body.message, "error");
+    }
+  };
+};
 
 export const startCartGet = () => {
   return async (dispatch) => {
@@ -9,18 +27,7 @@ export const startCartGet = () => {
     const body = await res.json();
 
     if (body.ok) {
-      let products = body.cartItems.Products;
-      dispatch(cartGet(products));
-
-      if (products.length < 1) {
-        dispatch(cartNumber(0));
-      } else {
-        let num = products
-          .map((product) => product.CartItem.quantity)
-          .reduce((count, item) => count + item, 0);
-
-        dispatch(cartNumber(num));
-      }
+      dispatch(cartGet(body.cartItems.Products));
     } else {
       Swal.fire("Error", body.message, "error");
     }
@@ -35,7 +42,7 @@ export const startCartAdd = (cartItem) => {
     if (body.ok) {
       console.log(body);
       dispatch(cartAdd(body.cartItem.Products[0]));
-      dispatch(cartNumberAdd(cartItem.quantity));
+      dispatch(cartQuantityAdd(cartItem.quantity));
       toast("Producto agregado al carrito", {
         type: "success",
         autoClose: 3000,
