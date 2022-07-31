@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { fetchWithToken } from "../../../helpers/fetch";
 import {
   cartAdd,
+  cartDelete,
   cartGet,
   cartQuantityAdd,
   cartQuantityGet,
@@ -28,6 +29,23 @@ export const startCartGet = () => {
 
     if (body.ok) {
       dispatch(cartGet(body.cartItems.Products));
+    } else {
+      Swal.fire("Error", body.message, "error");
+    }
+  };
+};
+
+export const startCartDelete = (id) => {
+  return async (dispatch) => {
+    const res = await fetchWithToken(`cart-item/${id}`, {}, "DELETE");
+    const body = await res.json();
+
+    if (body.ok) {
+      dispatch(cartDelete(id));
+      toast(body.message, {
+        type: "success",
+        autoClose: 3000,
+      });
     } else {
       Swal.fire("Error", body.message, "error");
     }

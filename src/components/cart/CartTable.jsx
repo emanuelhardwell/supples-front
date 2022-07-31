@@ -5,9 +5,10 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Delete } from "@mui/icons-material";
+
 import { numberFormat } from "../../helpers/numberFormat";
-import { Avatar, IconButton, Paper, Typography } from "@mui/material";
+import { Avatar, Paper, Typography } from "@mui/material";
+import { CartDelete } from "./CartDelete";
 
 function subtotal(rows) {
   return rows
@@ -69,9 +70,7 @@ export const CartTable = ({ cartItems }) => {
                   {numberFormat(row.price * row.CartItem.quantity)}
                 </TableCell>
                 <TableCell align="right">
-                  <IconButton aria-label="delete" color="error">
-                    <Delete />
-                  </IconButton>
+                  <CartDelete id={row.CartItem.id} />
                 </TableCell>
               </TableRow>
             ))}
