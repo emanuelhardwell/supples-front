@@ -6,6 +6,7 @@ import {
   cartGet,
   cartQuantityAdd,
   cartQuantityGet,
+  cartSubtract,
 } from "./cartSlice";
 import { toast } from "react-toastify";
 
@@ -41,6 +42,7 @@ export const startCartDelete = (id) => {
     const body = await res.json();
 
     if (body.ok) {
+      dispatch(cartSubtract(id));
       dispatch(cartDelete(id));
       toast(body.message, {
         type: "success",
