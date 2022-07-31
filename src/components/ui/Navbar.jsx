@@ -20,14 +20,14 @@ import { startLogout } from "../../store/slices/auth/authThunk";
 import { Badge } from "@mui/material";
 import { Notifications, MoreVert } from "@mui/icons-material/";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { startCartGet } from "../../store/slices/cart/cartThunk";
+import { startCartQuantityGet } from "../../store/slices/cart/cartThunk";
 
 // const pages = ["Home", "Pricing", "Blog"];
 // const settings = ["Perfil", "Cuenta", "Dashboard", "Salir"];
 
 export const Navbar = () => {
   const { name, rol } = useSelector((state) => state.auth);
-  const { cartNumber } = useSelector((state) => state.cart);
+  const { cartQuantity } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -55,7 +55,7 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    dispatch(startCartGet());
+    dispatch(startCartQuantityGet());
   }, [dispatch]);
 
   // Menu de carrito y notificaciones
@@ -88,7 +88,7 @@ export const Navbar = () => {
     >
       <MenuItem component={Link} to="/cart">
         <IconButton size="large" aria-label="show new mails" color="inherit">
-          <Badge badgeContent={cartNumber} color="error">
+          <Badge badgeContent={cartQuantity} color="error">
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
@@ -267,7 +267,7 @@ export const Navbar = () => {
                 aria-label="show new products"
                 color="inherit"
               >
-                <Badge badgeContent={cartNumber} color="error">
+                <Badge badgeContent={cartQuantity} color="error">
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
