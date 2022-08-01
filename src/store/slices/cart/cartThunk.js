@@ -1,10 +1,8 @@
 import Swal from "sweetalert2";
 import { fetchWithToken } from "../../../helpers/fetch";
 import {
-  cartAdd,
   cartDelete,
   cartGet,
-  cartQuantityAdd,
   cartQuantityGet,
   cartSubtract,
 } from "./cartSlice";
@@ -60,9 +58,8 @@ export const startCartAdd = (cartItem) => {
     const body = await res.json();
 
     if (body.ok) {
-      console.log(body);
-      dispatch(cartAdd(body.cartItem.Products[0]));
-      dispatch(cartQuantityAdd(cartItem.quantity));
+      dispatch(startCartQuantityGet());
+
       toast("Producto agregado al carrito", {
         type: "success",
         autoClose: 3000,

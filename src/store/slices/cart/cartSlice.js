@@ -13,12 +13,6 @@ export const cartSlice = createSlice({
     cartQuantityGet: (state, action) => {
       state.cartQuantity = action.payload;
     },
-    cartQuantityAdd: (state, action) => {
-      state.cartQuantity = state.cartQuantity + action.payload;
-    },
-    cartAdd: (state, action) => {
-      state.cartItems.push(action.payload);
-    },
     cartSubtract: (state, action) => {
       let { cartItems } = current(state);
       let quantity = cartItems.filter(
@@ -41,9 +35,7 @@ export const cartSlice = createSlice({
 export const {
   cartGet,
   cartQuantityGet,
-  cartAdd,
   cartSubtract,
-  cartQuantityAdd,
   cartDelete,
 } = cartSlice.actions;
 export default cartSlice.reducer;
